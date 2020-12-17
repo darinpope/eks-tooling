@@ -4,8 +4,7 @@ Image that contains all the tooling for creating an EKS cluster to install Cloud
 
 Here are the CLIs that are included in the image:
 
-* `AWS CLI version 1`
-* `aws-iam-authenticator`
+* `AWS CLI version 2`
 * `kubectl`
 * `eksctl`
 * `helm`

@@ -4,15 +4,15 @@ COPY greeting.sh /etc/profile.d/greeting.sh
 COPY bashrc /root/.bashrc
 
 RUN cd /usr/local/bin && \
-    yum -y install python36 python36-devel python3-setuptools python3-pip && \
-    pip3 install awscli --upgrade && \
-    curl -o aws-iam-authenticator "https://amazon-eks.s3.us-west-2.amazonaws.com/1.18.8/2020-09-18/bin/linux/amd64/aws-iam-authenticator" && \
-    chmod +x /usr/local/bin/aws-iam-authenticator && \
-    curl --silent --location "https://github.com/weaveworks/eksctl/releases/download/0.30.0/eksctl_Linux_amd64.tar.gz" | tar xz -C /tmp && \
+    yum -y install unzip && \
+    curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "/tmp/awscliv2.zip" && \
+    unzip /tmp/awscliv2.zip -d /tmp && \
+    /tmp/aws/install && \
+    curl --silent --location "https://github.com/weaveworks/eksctl/releases/download/0.34.0/eksctl_Linux_amd64.tar.gz" | tar xz -C /tmp && \
     mv /tmp/eksctl /usr/local/bin && \
-    curl -o kubectl "https://amazon-eks.s3.us-west-2.amazonaws.com/1.18.8/2020-09-18/bin/linux/amd64/kubectl" && \
+    curl -o kubectl "https://amazon-eks.s3.us-west-2.amazonaws.com/1.18.9/2020-11-02/bin/linux/amd64/kubectl" && \
     chmod +x /usr/local/bin/kubectl && \
-    curl --silent --location "https://get.helm.sh/helm-v3.3.4-linux-amd64.tar.gz" | tar xz -C /tmp && \
+    curl --silent --location "https://get.helm.sh/helm-v3.4.2-linux-amd64.tar.gz" | tar xz -C /tmp && \
     mv /tmp/linux-amd64/helm /usr/local/bin && \
     curl --silent --location "https://s3.amazonaws.com/cloudbees-core-cli/master/cloudbees-linux-amd64.tar.gz" | tar xz -C /tmp && \
     mv /tmp/cloudbees /usr/local/bin && \
